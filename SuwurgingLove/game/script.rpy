@@ -4,7 +4,8 @@
 # name of the character.
 
 define e = Character("Eileen")
-
+define stormie = Character("Stormie")
+define sparkie = Character("Sparkie")
 
 # The game starts here.
 

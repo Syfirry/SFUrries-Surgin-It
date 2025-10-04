@@ -3,9 +3,19 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
+<<<<<<< HEAD
 define stormy = Character("Stormy")
 define sparky = Character("Sparky")
 define player = Character("Player");
+=======
+define e = Character("Eileen")
+
+# Stormy -> Purple
+define stormy = Character("Stormy", color="#9D3BFF")
+
+# Stormy -> Yellow
+define sparky = Character("Sparky", color="#F5BF2A")
+>>>>>>> ben
 
 # The game starts here.
 
@@ -21,13 +31,11 @@ label start:
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
-    show eileen happy
-
     # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+    stormy "Hi! I'm stormy, I love being cuteeee!"
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    sparky "Hi! I'm sparky. Don't be shocked!"
 
     # This ends the game.
 

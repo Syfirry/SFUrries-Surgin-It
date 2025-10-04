@@ -3,9 +3,9 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
-define stormie = Character("Stormie")
-define sparkie = Character("Sparkie")
+define stormy = Character("Stormy")
+define sparky = Character("Sparky")
+define player = Character("Player");
 
 # The game starts here.
 

@@ -20,8 +20,8 @@ screen ide_screen(code_content, language="python", challenge_id=None, filename="
     frame:
         xalign 0.5
         yalign 0.5
-        xsize 1400
-        ysize 900
+        xsize 1200
+        ysize 700
         background "#252526"
         padding (20, 20)
         
@@ -66,7 +66,7 @@ screen ide_screen(code_content, language="python", challenge_id=None, filename="
             # Code editor area
             frame:
                 xfill True
-                yfill True
+                ysize 400
                 background "#1e1e1e"
                 padding (0, 0)
                 

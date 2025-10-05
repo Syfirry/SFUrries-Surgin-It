@@ -1,11 +1,19 @@
 screen ide_screen(code_content, language="python", challenge_id=None, filename="main.py"):
     modal True
+    zorder 200  # Ensure this screen is on top of everything
     
-    # Hide the quick menu during the coding challenge
-    on "show" action SetVariable("quick_menu", False)
-    on "hide" action SetVariable("quick_menu", True)
+    # Hide all UI elements during the coding challenge
+    on "show" action [
+        SetVariable("quick_menu", False),
+        Hide("quick_menu"),
+        SetVariable("_game_menu_screen", None)
+    ]
+    on "hide" action [
+        SetVariable("quick_menu", True),
+        Show("quick_menu")
+    ]
     
-    # IDE background
+    # Full screen background to cover everything
     add "#1e1e1e"
     
     # IDE window
@@ -31,13 +39,13 @@ screen ide_screen(code_content, language="python", challenge_id=None, filename="
                     spacing 20
                     yalign 0.5
                     
-                    text "DevStory IDE" color "#cccccc" size 20 bold True
+                    text "BSCode" color "#cccccc" size 20 bold True
                     text "-" color "#858585" size 16
                     text filename color "#cccccc" size 16
                     
                     null width 1.0  # Push to right
                     
-                    text f"Language: {language.title()}" color "#858585" size 14
+                    # text f"Language: {language.title()}" color "#858585" size 14
             
             # File tabs (simulated)
             frame:
@@ -62,54 +70,56 @@ screen ide_screen(code_content, language="python", challenge_id=None, filename="
                 background "#1e1e1e"
                 padding (0, 0)
                 
-                hbox:
-                    spacing 0
+                # Single viewport containing both line numbers and code
+                viewport:
+                    scrollbars "vertical"
+                    mousewheel True
                     
-                    # Line numbers column
-                    python:
-                        lines = code_content.split('\n')
-                        line_count = len(lines)
-                        max_digits = len(str(line_count))
-                        line_number_width = max(60, max_digits * 12 + 20)
-                    
-                    frame:
-                        xsize line_number_width
-                        yfill True
-                        background "#252526"
-                        padding (10, 15)
+                    hbox:
+                        spacing 0
                         
-                        viewport:
-                            scrollbars None
+                        # Line numbers column
+                        python:
+                            lines = code_content.split('\n')
+                            line_count = len(lines)
+                            max_digits = len(str(line_count))
+                            line_number_width = max(60, max_digits * 12 + 20)
+                            highlighted_code = highlight_code_pygments(code_content, language)
+                            highlighted_lines = highlighted_code.split('\n')
+                        
+                        frame:
+                            xsize line_number_width
+                            background "#252526"
+                            padding (10, 15)
                             
                             vbox:
                                 spacing 0
                                 
-                                for i in range(len(lines)):
-                                    text str(i + 1) color "#858585" size 14 font "gui/FiraCode-Regular.ttf" text_align 1.0 xfill True
-                    
-                    # Code content area
-                    frame:
-                        xfill True
-                        yfill True
-                        background "#1e1e1e"
-                        padding (15, 15)
+                                for i in range(len(highlighted_lines)):
+                                    text str(i + 1):
+                                        color "#858585" 
+                                        size 14 
+                                        font "gui/FiraCode-Regular.ttf" 
+                                        text_align 1.0 
+                                        xfill True
+                                        line_spacing 0
+                                        min_width 1
                         
-                        viewport:
-                            scrollbars "vertical"
-                            mousewheel True
+                        # Code content area
+                        frame:
+                            background "#1e1e1e"
+                            padding (15, 15)
                             
                             vbox:
                                 spacing 0
-                                
-                                python:
-                                    highlighted_code = highlight_code_pygments(code_content, language)
-                                    highlighted_lines = highlighted_code.split('\n')
                                 
                                 for line in highlighted_lines:
-                                    if line.strip():
-                                        text "[line]" size 14 font "gui/FiraCode-Regular.ttf" layout "tex"
-                                    else:
-                                        null height 21  # Empty line height
+                                    text "[line]":
+                                        size 14 
+                                        font "gui/FiraCode-Regular.ttf" 
+                                        layout "tex"
+                                        line_spacing 0
+                                        min_width 1
             
             # Challenge question and buttons
             if challenge_id:

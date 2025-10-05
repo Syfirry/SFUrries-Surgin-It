@@ -10,6 +10,7 @@ init python:
         "gemini-flash":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=",
     }
     
+    # TODO: replace this with normal env var handling
     def load_api_key (**kwargs):
         path = kwargs.get("path", "api_key.txt")
         key_file = os.path.join(config.gamedir, "api_key.txt")

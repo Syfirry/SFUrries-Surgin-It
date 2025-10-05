@@ -42,6 +42,7 @@ label start:
     scene bg black
 
     # <replace audio - running through door>
+    jump start_challenge_sequence
 
     sp "Come on! We can't be later than this!"
 

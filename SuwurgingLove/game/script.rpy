@@ -10,6 +10,7 @@ define narrator = Character(None, what_color="#FFFFFF", what_slow_cps=90)
 
 # Defining other variables
 default track = ""
+default language = ""
 
 
 # Defining images for organizational purposes
@@ -58,6 +59,7 @@ transform talk:
 
 transform notalk:
     easein 0.2 yoffset 10
+
 
 
 # Tired exec
@@ -305,10 +307,13 @@ menu:
 
     "CSSS Rube Goldberg Challenge":
         $ track = "CSSS Rube Goldberg Challenge"
+        $ language = "Python"
     "ColorStack Most Portable Project":
         $ track = "ColorStack Most Portable Project"
+        $ language = "Swift"
     "Safe Software Best Modern C++":
         $ track = "Safe Software Best Modern C++"
+        $ language = "C++"
 
 
 label after_track_choice:
@@ -357,9 +362,16 @@ label after_track_choice:
 
     pl "Me too, I'd love some trivia."
 
+    "We all nod in agreement."
+
+    sp "Shall we?"
+
+    scene bg Kahoot
+    with Dissolve(1.0)
 
 
-    
+
+
     
     return
 

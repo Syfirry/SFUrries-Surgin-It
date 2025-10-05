@@ -70,6 +70,7 @@ init python:
         return result
 
 # Define some common code challenge prompts
+#TODO Specific entries for each scripted challenge.
 define code_prompts = {
     "login_system": "Create a user login validation function that checks username and password",
     "data_processing": "Write a function to process and filter a list of user data",

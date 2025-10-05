@@ -86,11 +86,7 @@ label start:
     scene bg black
 
     # <replace audio - running through door>
-    st "Heyyyy see if you can accept my pull request plzzzz"
-    
-    # Call the challenge properly
-    call code_challenge_1
-    
+
     sp "Come on! We can't be later than this!"
 
     scene bg asb at truecenter
@@ -132,11 +128,11 @@ label start:
     te "You uh... you Sparky and [p_name]?"
 
     show exec -talking at right, resized, shiftleft, notalk
-    show sparky stressed talking at left, resized, shiftright, flipped, talk
+    show sparky sad talking at left, resized, shiftright, flipped, talk
     sp "Oh, yeah. You here to check us in?"
 
     show exec talking at right, resized, shiftleft, talk
-    show sparky stressed -talking at left, resized, shiftright, flipped, notalk
+    show sparky sad -talking at left, resized, shiftright, flipped, notalk
     te "Yeah yeah, c'mon. Let's just get this done real quick."
 
     show exec -talking at right, resized, shiftleft, notalk
@@ -211,23 +207,28 @@ label start:
     show exec talking at right, resized, shiftleft, talk
     te "Yeah yeah. QR?"
 
-    show stormy stressed talking at left, resized, shiftright, flipped, talk
+    show stormy sad talking at left, resized, shiftright, flipped, talk
     show exec -talking at right, resized, shiftleft, notalk
     st "Oh yeah right right right right right, here... here it is."
-    show stormy stressed -talking at left, resized, shiftright, flipped, notalk
+    show stormy sad -talking at left, resized, shiftright, flipped, notalk
 
     # play sound "scan.ogg"
 
     show exec talking at right, resized, shiftleft, talk
     te "Okay, there you go. On your merry way now."
     show exec -talking at right, resized, shiftleft, notalk
-    show stormy stressed talking at left, resized, shiftright, flipped, talk
+    show stormy sad talking at left, resized, shiftright, flipped, talk
     st "Thanks, I'll uh... I'll... yeah."
-    show stormy stressed -talking at left, resized, shiftright, flipped, notalk
+    show stormy sad -talking at left, resized, shiftright, flipped, notalk
+    hide stormy with Dissolve(0.6)
     "Stormy comes down the hall, head on a swivel looking for any empty tables."
-
+    
     "There doesn't seem to be any around."
 
+    scene bg table
+    with Dissolve(1.0)
+    show sparky at left, resized, shiftright, flipped, notalk
+    show stormy sad at right, resized, shiftleft, notalk
     "With the only open seats being next to us, Stormy approaches our table shyly, picking the seat farthest away."
 
     "We both take a glance at him, seeing him slowly pull his laptop out, ever so slightly scooting away from us as well."
@@ -236,27 +237,68 @@ label start:
 
     "Sparky turns to give me an acknowledging look, then slides over and nudges him."
 
+
+    show sparky talking at left, resized, shiftright, flipped, talk
     sp "Hey there."
 
+    show stormy sad talking at right, resized, shiftleft, talk
+    show sparky -talking at left, resized, shiftright, flipped, notalk
     st "Oh... h-hey..."
 
+    show stormy sad -talking at right, resized, shiftleft, notalk
+    show sparky talking at left, resized, shiftright, flipped, talk
     sp "You came late too, huh?"
 
+    show stormy sad talking at right, resized, shiftleft, talk
+    show sparky -talking at left, resized, shiftright, flipped, notalk
     st "R-right, yeah."
 
+    show stormy sad -talking at right, resized, shiftleft, notalk
+    show sparky talking at left, resized, shiftright, flipped, talk
     sp "Would you... like to join us? I mean, the more the merrier, right?"
 
+    show stormy sad talking at right, resized, shiftleft, talk
+    show sparky -talking at left, resized, shiftright, flipped, notalk
     st "Could I do that?"
 
+    show stormy sad -talking at right, resized, shiftleft, notalk
+    show sparky talking at left, resized, shiftright, flipped, talk
     sp "Of course! I mean, you can, but you don't have to."
 
-    pl "Okay... if that's alright with you two."
+    show sparky -talking at left, resized, shiftright, flipped, notalk
+    show stormy sad talking at right, resized, shiftleft, talk
+    st "Okay... if that's alright with you two."
 
     st "I don't think I'd be able to finish a project on my own within the remaining time anyways."
 
     st "So uh... t-thanks."
 
-    "He makes a good attempt to give us a friendly smile."
+    show stormy -talking at right, resized, shiftleft, notalk
+    "He makes a good attempt to give us a friendly smile. We smile back."
+
+    pl "Well, welcome to our team! I don't think I caught your name?"
+
+    show stormy talking at right, resized, shiftleft, talk
+    st "Oh, uh, Stormy."
+
+    show stormy -talking at right, resized, shiftleft, notalk
+    pl "Nice to meet you, Stormy. I'm [p_name]."
+    show sparky talking at left, resized, shiftright, flipped, talk
+    sp "And I'm Sparky."
+    show sparky -talking at left, resized, shiftright, flipped, notalk
+    show stormy talking at right, resized, shiftleft, talk
+    st "Uh, nice to meet you two... too, yeah."
+    show stormy -talking at right, resized, shiftleft, notalk
+    pl "Alright, introductions aside, we probably should consider what track we want to work on. We're really short on time afterall."
+
+    pl "Do either of you have anything in mind?"
+    show stormy talking at right, resized, shiftleft, talk
+    st "I... I didn't get that far yet. Was uh... rushing to get here..."
+    show stormy -talking at right, resized, shiftleft, notalk
+    show sparky talking at left, resized, shiftright, flipped, talk
+    sp "Don't look at me, you know I'm indecisive."
+    show sparky -talking at left, resized, shiftright, flipped, notalk
+    pl "Well then..."
 
 menu:
     "What track should we work towards?"
@@ -271,7 +313,13 @@ menu:
 
 label after_track_choice:
 
+    
     return
+
+
+
+
+
 
 # Code challenge label
 label code_challenge_1:
@@ -295,3 +343,10 @@ label code_challenge_1:
         "Sorry, the challenge failed to load. Let's continue..."
     
     return
+
+
+    # st "Heyyyy see if you can accept my pull request plzzzz"
+    
+    # Call the challenge properly
+    # call code_challenge_1
+    

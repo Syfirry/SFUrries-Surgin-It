@@ -1,5 +1,5 @@
 ﻿# Defining characters
-define pl = Character("Player");
+define pl = Character("Player")
 define st = Character("Stormy", color="#9D3BFF", what_prefix="\"", what_suffix="\"")
 define sp = Character("Sparky", color="#F5BF2A", what_prefix="\"", what_suffix="\"")
 
@@ -37,8 +37,6 @@ image bg asb = "bg/asb.png"
 # CG art
 # define cg art here
 
-
-
 # Game start
 label start:
     scene bg black
@@ -51,9 +49,5 @@ label start:
     with Dissolve(1.0)
 
     "We burst through the doors of the Applied Science Building, still trying to put our backpacks on properly."
-
-
-
-
 
     return

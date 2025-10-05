@@ -1255,7 +1255,7 @@ style skip_text:
 style skip_triangle:
     ## We have to use a font that has the BLACK RIGHT-POINTING SMALL TRIANGLE
     ## glyph in it.
-    font "DejaVuSans.ttf"
+    font "gui/FiraCode-Regular.ttf"
 
 
 ## Notify screen ###############################################################
@@ -1506,7 +1506,6 @@ define bubble.expand_area = {
     "top_right" : (0, 22, 0, 0),
     "thought" : (0, 0, 0, 0),
 }
-
 
 
 ################################################################################

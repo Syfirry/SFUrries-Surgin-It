@@ -50,7 +50,11 @@ label start:
     scene bg black
 
     # <replace audio - running through door>
-
+    st "Heyyyy see if you can accept my pull request plzzzz"
+    
+    # Call the challenge properly
+    call code_challenge_1
+    
     sp "Come on! We can't be later than this!"
 
     scene bg asb at half_size, truecenter
@@ -58,4 +62,29 @@ label start:
 
     "We burst through the doors of the Applied Science Building, still trying to put our backpacks on properly."
 
+
+
+    return
+
+# Code challenge label
+label code_challenge_1:
+    python:
+        request_code_challenge(code_prompts["login_system"], "challenge_1", "python")
+        challenge_ready = wait_for_code_challenge("challenge_1")
+    
+    if challenge_ready:
+        $ result = show_code_challenge("challenge_1")
+        
+        if result == "answer_given":
+            "You submitted your answer!"
+            # Add logic here based on whether player_answer is correct
+            if player_answer:
+                "Great job! You identified the code correctly."
+            else:
+                "Nice try! Let's review what you found."
+        elif result == "skip":
+            "You decided to skip this challenge."
+    else:
+        "Sorry, the challenge failed to load. Let's continue..."
+    
     return

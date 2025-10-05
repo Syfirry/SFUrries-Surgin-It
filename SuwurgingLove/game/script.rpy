@@ -47,15 +47,13 @@ label start:
 
     # <replace audio - running through door>
     st "Hey! Check out the Gemini Demo Here! In the full game, these challenges would appear periodically!"
-
+    sp "The objective is to identify whether the code was generated intentionally with errors, or if the code is ready to ship!"
+    sp "Please wait as it takes a moment to query the API. Note: A Google-AI-Studio API key is required to be placed in the game directory!"
     # Call the challenge properly
     call code_challenge_1
 
     sp "Thanks for playing!"
 
-    scene bg asb
-    with Dissolve(1.0)
-    
     return
 
 # Code challenge label

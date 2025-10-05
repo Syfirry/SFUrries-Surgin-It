@@ -12,6 +12,8 @@ define narrator = Character(None, what_color="#FFFFFF", what_slow_cps=90)
 default track = ""
 default language = ""
 default tname = ""
+define points = 0
+define kahootcount = 0
 
 # Defining audio
 define door = "doorrush.wav"
@@ -78,6 +80,7 @@ image bg black = "bg/black.png"
 image bg black2 = "bg/black2.png"
 image bg asb = "bg/asb.png"
 image bg table = "bg/table.png"
+image bg kahoot = "bg/kahoot.png"
 
 # CG art
 # define cg art here
@@ -328,7 +331,7 @@ menu trackchoice:
 
 label after_track_choice:
     $ getcodes()
-    pl "Let's go for the [track] track then. Does that work for everyone?"
+    pl "Let's go for the [tname] track then. Does that work for everyone?"
     show sparky talking at left, resized, shiftright, flipped, talk
     sp "Works for me."
     show stormy talking at right, resized, shiftleft, talk
@@ -365,28 +368,134 @@ label after_track_choice:
 
     pl "Mmmmh, alright. We've been at this for a bit now, and while I know we're under a big time constraint, I also want to go to at least one event."
 
+    show sparky talking at left, resized, shiftright, flipped, talk
     sp "Yeah I agree. Still wanna have some fun at least. What'dya say, Stormy?"
 
+    show sparky -talking at left, resized, shiftright, flipped, notalk
+    show stormy sad talking at right, resized, shiftleft, talk
     st "W-well, there's a Tech Kahoot Trivia that starts in... well in just a couple minutes."
 
+    show sparky talking at left, resized, shiftright, flipped, talk
+    show stormy sad -talking at right, resized, shiftleft, notalk
     sp "Oh, cool, yeah I'm down for that."
 
+    show sparky -talking at left, resized, shiftright, flipped, notalk
+    show stormy -sad at right, resized, shiftleft, notalk
     pl "Me too, I'd love some trivia."
 
     "We all nod in agreement."
 
+    show sparky talking at left, resized, shiftright, flipped, talk
     sp "Shall we?"
 
-    scene bg Kahoot
+    scene bg kahoot
     with Dissolve(1.0)
 
-    "We arrive at ASB 9703, prepared to have some fun"
+    "We arrive at ASB 9703, prepared to have some fun."
+
+    show sparky happy talking at left, resized, shiftright, flipped, talk
+    show stormy happy at right, resized, shiftleft, notalk
+    sp "Alright! I'm pumped! You ready?"
+
+    show sparky happy -talking at left, resized, shiftright, flipped, notalk
+    show stormy happy talking at right, resized, shiftleft, talk
+    st "Uh— y-yeah!"
+
+    show stormy happy -talking at right, resized, shiftleft, notalk
+    pl "May the best man win!"
+
+    hide stormy happy
+    hide sparky happy
+
+    jump kahoot
+    
+label after_kahoot:
+    if points > 25:
+        show stormy happy talking at right, resized, shiftleft, talk
+        show sparky happy at left, resized, shiftright, flipped, notalk
+        st "Woah! You did so well!"
+        show sparky happy talking at left, resized, shiftright, flipped, talk
+        show stormy happy -talking at right, resized, shiftleft, notalk
+        sp "Yeah man! Seems like you know your stuff!"
+    elif points > 20:
+        show sparky happy talking at left, resized, shiftright, flipped, talk
+        show stormy happy -talking at right, resized, shiftleft, notalk
+        sp "Hey, you did pretty good!"
+        show stormy happy talking at right, resized, shiftleft, talk
+        show sparky happy at left, resized, shiftright, flipped, notalk
+        st "Y-yeah, you did well!"
+    elif points > 15:
+        show stormy talking at right, resized, shiftleft, talk
+        show sparky at left, resized, shiftright, flipped, notalk
+        st "That was really fun! We did alright!"
+        show sparky talking at left, resized, shiftright, flipped, talk
+        show stormy -talking at right, resized, shiftleft, notalk
+        sp "Yeah! We should play again next year!"
+    elif points > 10:
+        show sparky talking at left, resized, shiftright, flipped, talk
+        show stormy -talking at right, resized, shiftleft, notalk
+        sp "It's alright man, you'll get better!"
+        show stormy talking at right, resized, shiftleft, talk
+        show sparky at left, resized, shiftright, flipped, notalk
+        st "Y-yeah, I just know it!"
+    else:
+        show stormy sad talking at right, resized, shiftleft, talk
+        show sparky at left, resized, shiftright, flipped, notalk
+        st "Aw man... y-you did alright... right?"
+        show sparky talking at left, resized, shiftright, flipped, talk
+        show stormy sad -talking at right, resized, shiftleft, notalk
+        sp "Guess you gotta study up on this, huh?"
+
+    "More stuff"
+
+    show expression Solid("#000") as black_overlay onlayer blackfade
+    with Dissolve(1.0)
+
+    hide sparky
+    hide exec
+    window hide
+
+    show bg black
+    hide black_overlay onlayer blackfade
+
+    $ _old_cps = preferences.text_cps
+    $ preferences.text_cps = 0
+    centered "{size=72}{b}To Be Continued...{/b}{/size}"
+    $ preferences.text_cps = _old_cps
 
     python: 
         playgame()
     
     return
 
+
+
+menu kahootq:
+    "[qstion]"
+
+    "[ans1]":
+        python:
+            if ans1 == ans:
+                points += 1
+                renpy.jump("kahoot")
+    
+    "[ans2]":
+        python:
+            if ans1 == ans:
+                points += 1
+                renpy.jump("kahoot")
+    
+    "[ans3]":
+        python:
+            if ans1 == ans:
+                points += 1
+                renpy.jump("kahoot")
+    
+    "[ans4]":
+        python:
+            if ans1 == ans:
+                points += 1
+                renpy.jump("kahoot")
 
 
 init python:
@@ -410,9 +519,21 @@ init python:
                 "You decided to skip this challenge."
 
     
-    
 
 
+label kahoot:
+    python:
+        questions = "What does “HTTP” stand for?,HyperText Transfer Protocol,HighText Transfer Process,Hyper Transfer Text Program,High Transmission Text Protocol,HyperText Transfer Protocol,Which company developed the first iPhone?,Google,Apple,Microsoft,Nokia,Apple,What does CPU stand for?,Central Processing Unit,Computer Primary Unit,Core Processing Utility,Central Power Unit,Central Processing Unit,Which programming language is often referred to as the “mother of all languages”?,Assembly,FORTRAN,C,COBOL,C,What year was Google founded?,1995,1996,1998,2000,1998,What does “GPU” stand for in computing?,General Processing Unit,Graphics Processing Unit,Graphical Program Utility,Global Processing Unit,Graphics Processing Unit,Which was the first social media platform to reach 1 billion users?,Twitter,Facebook,Instagram,YouTube,Facebook,Who is known as the father of the World Wide Web?,Steve Jobs,Tim Berners-Lee,Bill Gates,Vint Cerf,Tim Berners-Lee,Which company created the Windows operating system?,Apple,Microsoft,IBM,Intel,Microsoft,What does “URL” stand for?,Universal Routing Link,Uniform Resource Locator,Unified Retrieval Language,User Reference Link,Uniform Resource Locator,Which was the first video game ever made?,Pong,Space Invaders,Tetris,Tennis for Two,Tennis for Two,What company owns Android?,Samsung,Microsoft,Google,Apple,Google,Which key is often used to refresh a web page?,F2,F5,Ctrl + R,F9,F5,What is the maximum number of characters allowed in a tweet (as of 2023)?,140,200,280,500,280,What does VPN stand for?,Virtual Private Network,Virtual Public Network,Verified Personal Network,Virtual Protected Node,Virtual Private Network,Which programming language is used to build iOS apps?,Swift,Java,Python,C#,Swift,What does “AI” stand for?,Artificial Integration,Automated Intelligence,Artificial Intelligence,Applied Internet,Artificial Intelligence,Which company developed the PlayStation console?,Nintendo,Sony,Microsoft,Sega,Sony,What is the most widely used operating system in the world?,macOS,Linux,Windows,Android,Android,What does HTML stand for?,HyperText Markup Language,High Transfer Machine Language,Hyper Transfer Markup Language,Hyperlink Text Machine Logic,HyperText Markup Language,Who co-founded Microsoft with Bill Gates?,Steve Wozniak,Paul Allen,Larry Page,Mark Zuckerberg,Paul Allen,What year was Facebook launched?,2002,2004,2006,2008,2004,Which was the first search engine on the internet?,Yahoo!,Google,Archie,AltaVista,Archie,Which tech company has the slogan “Think Different”?,Microsoft,Apple,IBM,Samsung,Apple,What is the name of the first computer virus?,Creeper,Brain,ILOVEYOU,Melissa,Creeper,Which programming language runs natively in web browsers?,C++,Java,JavaScript,Python,JavaScript,Which company owns GitHub?,Apple,Google,Microsoft,Amazon,Microsoft,What does “5G” stand for?,5th Generation,5 Gigabytes,5th Grid,Fifth Global,5th Generation,Which device was the first commercially successful personal computer?,Apple I,Commodore 64,IBM PC,Altair 8800,Commodore 64,Which cryptocurrency was the first ever created?,Ethereum,Dogecoin,Bitcoin,Litecoin,Bitcoin".split(",")
+        qstion = questions[0 + (kahootcount * 6)]
+        ans1 = questions[1 + (kahootcount * 6)]
+        ans2 = questions[2 + (kahootcount * 6)]
+        ans3 = questions[3 + (kahootcount * 6)]
+        ans4 = questions[4 + (kahootcount * 6)]
+        ans = questions[5 + (kahootcount * 6)]
+        kahootcount += 1
+        if kahootcount == 30:
+            renpy.jump("after_kahoot")
+        renpy.jump("kahootq")
 
 
 

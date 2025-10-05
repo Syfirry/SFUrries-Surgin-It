@@ -7,10 +7,6 @@ define st = Character("Stormy", color="#9D3BFF", what_prefix="\"", what_suffix="
 define sp = Character("Sparky", color="#F5BF2A", what_prefix="\"", what_suffix="\"")
 define te = Character("Tired Exec", what_prefix="\"", what_suffix="\"")
 
-# Defining transforms
-transform half_size:
-    zoom 0.5
-
 # Defining images for organizational purposes
 # Sparky
 image sparky = "sparky/neutral.png"
@@ -47,6 +43,7 @@ image exec talking = "exec/neutral_talking.png"
 # Backgrounds
 image bg black = "bg/black.png"
 image bg asb = "bg/asb.png"
+image bg table = "bg/table.png"
 
 # CG art
 # define cg art here
@@ -63,7 +60,7 @@ label start:
     
     sp "Come on! We can't be later than this!"
 
-    scene bg asb at half_size, truecenter
+    scene bg asb at truecenter
     with Dissolve(1.0)
 
     "We burst through the doors of the Applied Science Building, still trying to put our backpacks on properly."
@@ -114,6 +111,9 @@ label start:
 
     scene bg black
     centered "12 Hours Until Deadline"
+
+    scene bg table at truecenter
+    with Dissolve(1.0)
 
     "We take a moment to catch our breaths and settle down."
 

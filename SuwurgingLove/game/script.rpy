@@ -18,6 +18,7 @@ define kahootcount = 0
 # Defining audio
 define door = "doorrush.wav"
 define beep = "scanbeep.wav"
+define kahootsong = "kahoot.mp3"
 
 
 # Defining images for organizational purposes
@@ -407,9 +408,12 @@ label after_track_choice:
     hide stormy happy
     hide sparky happy
 
+    play music kahootsong
+
     jump kahoot
     
 label after_kahoot:
+    stop music
     if points > 25:
         show stormy happy talking at right, resized, shiftleft, talk
         show sparky happy at left, resized, shiftright, flipped, notalk
@@ -446,13 +450,11 @@ label after_kahoot:
         show stormy sad -talking at right, resized, shiftleft, notalk
         sp "Guess you gotta study up on this, huh?"
 
-    "More stuff"
-
     show expression Solid("#000") as black_overlay onlayer blackfade
     with Dissolve(1.0)
 
     hide sparky
-    hide exec
+    hide stormy
     window hide
 
     show bg black
@@ -463,10 +465,10 @@ label after_kahoot:
     centered "{size=72}{b}To Be Continued...{/b}{/size}"
     $ preferences.text_cps = _old_cps
 
+    return
+
     python: 
         playgame()
-    
-    return
 
 
 

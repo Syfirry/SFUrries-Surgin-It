@@ -59,7 +59,7 @@ label start:
 # Code challenge label
 label code_challenge_1:
     python:
-        request_code_challenge(code_prompts["login_system"], "challenge_1", "python")
+        request_code_challenge(code_prompts["memory_leak"], "challenge_1", "c")
         challenge_ready = wait_for_code_challenge("challenge_1")
     
     if challenge_ready:

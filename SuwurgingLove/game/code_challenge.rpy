@@ -78,5 +78,5 @@ define code_prompts = {
     "api_endpoint": "Implement a REST API endpoint for user registration",
     "algorithm_bug": "A sorting algorithm implementation with a subtle logical error",
     "security_issue": "A password validation function with security vulnerabilities",
-    "memory_leak": "A function that might cause memory issues or inefficient resource usage"
+    "memory_leak": "A function that will obviously cause memory issues or inefficient resource usage",
 }

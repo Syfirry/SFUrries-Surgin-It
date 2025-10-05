@@ -1,7 +1,7 @@
 ﻿# Defining characters
 define pl = Character("Player");
-define st = Character("Stormy", color="#9D3BFF")
-define sp = Character("Sparky", color="#F5BF2A")
+define st = Character("Stormy", color="#9D3BFF", what_prefix="\"", what_suffix="\"")
+define sp = Character("Sparky", color="#F5BF2A", what_prefix="\"", what_suffix="\"")
 
 # Defining images for organizational purposes
 # Sparky
@@ -43,12 +43,17 @@ image bg asb = "bg/asb.png"
 label start:
     scene bg black
 
-    # These display lines of dialogue.
+    # <replace audio - running through door>
 
-    stormy "Hi! I'm stormy, I love being cuteeee!"
+    sp "Come on! We can't be later than this!"
 
-    sparky "Hi! I'm sparky. Don't be shocked!"
+    scene bg asb
+    with Dissolve(1.0)
 
-    # This ends the game.
+    "We burst through the doors of the Applied Science Building, still trying to put our backpacks on properly."
+
+
+
+
 
     return

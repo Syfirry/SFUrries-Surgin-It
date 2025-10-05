@@ -1,11 +1,13 @@
 ﻿# Defining player
-default p_name = "testname"
-define pl = Character("[p_name]")
+default p_name = ""
+define pl = Character("[p_name]", color="#db698b", what_color="#FFFFFF", what_prefix="\"", what_suffix="\"", what_slow_cps=90)
 
 # Defining characters
-define st = Character("Stormy", color="#9D3BFF", what_prefix="\"", what_suffix="\"")
-define sp = Character("Sparky", color="#F5BF2A", what_prefix="\"", what_suffix="\"")
-define te = Character("Tired Exec", what_prefix="\"", what_suffix="\"")
+define st = Character("Stormy", color="#9D3BFF", what_color="#FFFFFF", what_prefix="\"", what_suffix="\"", what_slow_cps=90)
+define sp = Character("Sparky", color="#F5BF2A", what_color="#FFFFFF", what_prefix="\"", what_suffix="\"", what_slow_cps=90)
+define te = Character("Tired Exec", color="#7ea8df", what_color="#FFFFFF", what_prefix="\"", what_suffix="\"", what_slow_cps=90)
+define nar = Character(None, what_color="#FFFFFF", what_slow_cps=90)
+define inst = Character(None, what_color="#FFFFFF", what_slow_cps=0)
 
 # Defining images for organizational purposes
 # Sparky
@@ -50,6 +52,9 @@ image bg table = "bg/table.png"
 
 # Game start
 label start:
+    $ p_name = renpy.input("What is your name?")
+    $ p_name = p_name.strip()
+
     scene bg black
 
     # <replace audio - running through door>
@@ -110,7 +115,10 @@ label start:
     "It takes us a bit, but miraculously, we find an empty table and drop our bags right down."
 
     scene bg black
-    centered "12 Hours Until Deadline"
+    $ _old_cps = preferences.text_cps
+    $ preferences.text_cps = 0
+    centered "{size=72}{b}12 Hours Until Deadline{/b}{/size}"
+    $ preferences.text_cps = _old_cps  # ✅ Restore original speed
 
     scene bg table at truecenter
     with Dissolve(1.0)

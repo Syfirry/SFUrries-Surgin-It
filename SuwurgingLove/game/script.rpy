@@ -12,6 +12,10 @@ define narrator = Character(None, what_color="#FFFFFF", what_slow_cps=90)
 default track = ""
 default language = ""
 
+# Defining audio
+define door = "doorrush.wav"
+define beep = "scanbeep.wav"
+
 
 # Defining images for organizational purposes
 # Sparky
@@ -87,7 +91,7 @@ label start:
 
     scene bg black
 
-    # <replace audio - running through door>
+    play sound door
 
     sp "Come on! We can't be later than this!"
 
@@ -139,10 +143,11 @@ label start:
 
     show exec -talking at right, resized, shiftleft, notalk
 
-    # play sound "scan.ogg"
-    "Scan sound here"
+    play sound beep
 
-    # play sound "scan.ogg"
+    pause 3
+
+    play sound beep
 
     show exec talking at right, resized, shiftleft, talk
     te "There. Now happy hacking or whatever. You can get to it."
@@ -185,7 +190,7 @@ label start:
 
     "Suddenly, someone else sprints through the doors just like we did."
 
-    # play sound "running_doors.ogg"
+    play sound door
 
     scene bg asb
     with Dissolve(1.0)
@@ -214,7 +219,7 @@ label start:
     st "Oh yeah right right right right right, here... here it is."
     show stormy sad -talking at left, resized, shiftright, flipped, notalk
 
-    # play sound "scan.ogg"
+    play sound beep
 
     show exec talking at right, resized, shiftleft, talk
     te "Okay, there you go. On your merry way now."
@@ -369,12 +374,11 @@ label after_track_choice:
     scene bg Kahoot
     with Dissolve(1.0)
 
-
+    "We arrive at ASB 9703, prepared to have some fun"
 
 
     
     return
-
 
 
 

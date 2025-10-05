@@ -118,7 +118,7 @@ label start:
     $ _old_cps = preferences.text_cps
     $ preferences.text_cps = 0
     centered "{size=72}{b}12 Hours Until Deadline{/b}{/size}"
-    $ preferences.text_cps = _old_cps  # ✅ Restore original speed
+    $ preferences.text_cps = _old_cps
 
     scene bg table at truecenter
     with Dissolve(1.0)

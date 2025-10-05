@@ -71,7 +71,7 @@ label code_challenge_1:
             if player_answer:
                 "Great job! You identified the code correctly."
             else:
-                "Nice try! Let's review what you found."
+                "Incorrect, but note that since this is using an LLM, output can be incorrect regardless of what it was instructed to do."
         elif result == "skip":
             "You decided to skip this challenge."
     else:

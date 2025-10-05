@@ -312,7 +312,54 @@ menu:
 
 
 label after_track_choice:
+    pl "Let's go for the [track] track then. Does that work for everyone?"
+    show sparky talking at left, resized, shiftright, flipped, talk
+    sp "Works for me."
+    show stormy talking at right, resized, shiftleft, talk
+    show sparky -talking at left, resized, shiftright, flipped, notalk
+    st "Y-yeah, me too."
+    show stormy -talking at right, resized, shiftleft, notalk
+    pl "Alrighty, let's get started then!"
 
+    show expression Solid("#000") as black_overlay onlayer blackfade
+    with Dissolve(1.0)
+
+    hide sparky
+    hide stormy
+    window hide
+
+    show bg black
+    hide black_overlay onlayer blackfade
+
+    $ _old_cps = preferences.text_cps
+    $ preferences.text_cps = 0
+    centered "{size=72}{b}11 Hours Until Deadline{/b}{/size}"
+    $ preferences.text_cps = _old_cps
+
+    
+    scene bg table at truecenter
+    with Dissolve(1.0)
+    window show
+
+    show sparky at left, resized, shiftright, flipped, notalk
+    show stormy at right, resized, shiftleft, notalk
+    "It's been an hour since we started, but my mind is already getting tired."
+    
+    "I let out a big stretch."
+
+    pl "Mmmmh, alright. We've been at this for a bit now, and while I know we're under a big time constraint, I also want to go to at least one event."
+
+    sp "Yeah I agree. Still wanna have some fun at least. What'dya say, Stormy?"
+
+    st "W-well, there's a Tech Kahoot Trivia that starts in... well in just a couple minutes."
+
+    sp "Oh, cool, yeah I'm down for that."
+
+    pl "Me too, I'd love some trivia."
+
+
+
+    
     
     return
 

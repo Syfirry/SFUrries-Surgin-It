@@ -46,20 +46,16 @@ label start:
     scene bg black
 
     # <replace audio - running through door>
-    st "Heyyyy see if you can accept my pull request plzzzz"
-    
+    st "Hey! Check out the Gemini Demo Here! In the full game, these challenges would appear periodically!"
+
     # Call the challenge properly
     call code_challenge_1
-    
-    sp "Come on! We can't be later than this!"
+
+    sp "Thanks for playing!"
 
     scene bg asb
     with Dissolve(1.0)
-
-    "We burst through the doors of the Applied Science Building, still trying to put our backpacks on properly."
-
-
-
+    
     return
 
 # Code challenge label

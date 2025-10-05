@@ -9,6 +9,8 @@ init python:
         
         Please provide only the code without any explanations or markdown formatting.
         The code should be between 10-30 lines.
+
+        DO NOT add any code comments.
         """
         
         gemini_client.generate_content_async(full_prompt, challenge_id)

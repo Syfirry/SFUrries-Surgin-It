@@ -1,4 +1,4 @@
-#!/Users/bvah/.pyenv/versions/3.12.5/bin/python
+#!/Users/bvah/.pyenv/versions/3.12.5/bin/python3.12
 import sys
 from rsa.cli import encrypt
 if __name__ == '__main__':

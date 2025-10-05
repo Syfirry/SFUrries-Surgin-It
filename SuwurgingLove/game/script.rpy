@@ -25,14 +25,14 @@ image stormy = "stormy/neutral.png"
 image stormy happy = "stormy/happy.png"
 image stormy sad = "stormy/sad.png"
 image stormy stressed = "stormy/stressed.png"
-image stormy embarrassed = "stormy/embarrassed.png"
+image stormy flushed = "stormy/flushed.png"
 
 # Stormy talking variation
 image stormy talking = "stormy/neutral_talking.png"
 image stormy happy talking = "stormy/happy_talking.png"
 image stormy sad talking = "stormy/sad_talking.png"
 image stormy stressed talking = "stormy/stressed_talking.png"
-image stormy embarrassed talking = "stormy/embarrassed_talking.png"
+image stormy flushed talking = "stormy/flushed_talking.png"
 
 # Backgrounds
 image bg black = "bg/black.png"

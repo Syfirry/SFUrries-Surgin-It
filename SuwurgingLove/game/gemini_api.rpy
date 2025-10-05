@@ -4,6 +4,8 @@ init -1 python:
     import threading
     from store import *
 
+    DEFAULT_MODEL = "gemini-2.5-flash"
+
     def load_api_key (**kwargs):
         path = kwargs.get("path", "api_key.txt")
         key_file = os.path.join(config.gamedir, "api_key.txt")
@@ -90,4 +92,4 @@ init -1 python:
 
     # Initialize the API client
     # Replace with your actual Gemini API key
-    gemini_client = GeminiAPI(load_api_key(), "gemini-2.5-flash")
+    gemini_client = GeminiAPI(load_api_key(), DEFAULT_MODEL)

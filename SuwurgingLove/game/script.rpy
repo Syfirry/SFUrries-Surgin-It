@@ -46,7 +46,12 @@ label start:
     scene bg black
 
     # <replace audio - running through door>
-    jump start_challenge_sequence
+    st "Heyyyy see if you can accept my pull request plzzzz"
+    python:
+        request_code_challenge(code_prompts["login_system"], "challenge_1", "python")
+        challenge_ready = wait_for_code_challenge("challenge_1")
+        show_code_challenge("challenge_1")
+
 
     sp "Come on! We can't be later than this!"
 
@@ -54,5 +59,7 @@ label start:
     with Dissolve(1.0)
 
     "We burst through the doors of the Applied Science Building, still trying to put our backpacks on properly."
+
+
 
     return

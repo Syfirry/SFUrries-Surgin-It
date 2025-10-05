@@ -3,7 +3,7 @@ init -1 python:
     import json
     import threading
     from store import *
-    
+
     def load_api_key (**kwargs):
         path = kwargs.get("path", "api_key.txt")
         key_file = os.path.join(config.gamedir, "api_key.txt")
@@ -17,9 +17,9 @@ init -1 python:
         return os.environ.get("GEMINI_API_KEY")
 
     class GeminiAPI:
-        def __init__(self, api_key):
+        def __init__(self, api_key, model_name):
+            self.base_url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
             self.api_key = api_key
-            self.base_url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
             self.pending_requests = {}
             self.completed_requests = {}
         
@@ -90,5 +90,4 @@ init -1 python:
 
     # Initialize the API client
     # Replace with your actual Gemini API key
-    gemini_client = GeminiAPI(load_api_key())
-
+    gemini_client = GeminiAPI(load_api_key(), "gemini-2.5-flash")

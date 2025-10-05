@@ -1575,7 +1575,7 @@ screen ide_screen (code_content, language="python", challenge_id=None):
                     vbox:
                         spacing 10
                         
-                        text "Is this code correct?" color="#cccccc" size 20
+                        text "Is this code correct?" color "#cccccc" size 20
                         
                         hbox:
                             spacing 20

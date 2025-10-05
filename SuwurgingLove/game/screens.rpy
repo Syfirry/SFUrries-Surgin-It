@@ -107,7 +107,7 @@ screen say(who, what):
                 style "namebox"
                 text who id "who"
 
-        text what id "what"
+        text what id "what" color "#FFFFFF"
 
 
     ## If there's a side image, display it above the text. Do not display on
@@ -189,11 +189,12 @@ style input_prompt is default
 
 style input_prompt:
     xalign gui.dialogue_text_xalign
-    properties gui.text_properties("input_prompt")
+    properties gui.text_properties("input_prompt") color "#FFFFFF"
 
 style input:
     xalign gui.dialogue_text_xalign
     xmaximum gui.dialogue_width
+    color "#37b2eb"
 
 
 ## Choice screen ###############################################################
@@ -269,7 +270,7 @@ style quick_button_text is button_text
 
 style quick_menu:
     xalign 0.5
-    yalign 1.0
+    yalign 0.98
 
 style quick_button:
     properties gui.button_properties("quick_button")
@@ -1255,7 +1256,7 @@ style skip_text:
 style skip_triangle:
     ## We have to use a font that has the BLACK RIGHT-POINTING SMALL TRIANGLE
     ## glyph in it.
-    font "DejaVuSans.ttf"
+    font "gui/FiraCode-Regular.ttf"
 
 
 ## Notify screen ###############################################################
@@ -1506,7 +1507,6 @@ define bubble.expand_area = {
     "top_right" : (0, 22, 0, 0),
     "thought" : (0, 0, 0, 0),
 }
-
 
 
 ################################################################################

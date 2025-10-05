@@ -1,7 +1,11 @@
-﻿# Defining characters
-define pl = Character("Player")
+﻿# Defining player
+default p_name = ""
+define pl = Character("[p_name]")
+
+# Defining characters
 define st = Character("Stormy", color="#9D3BFF", what_prefix="\"", what_suffix="\"")
 define sp = Character("Sparky", color="#F5BF2A", what_prefix="\"", what_suffix="\"")
+define te = Character("Tired Exec", what_prefix="\"", what_suffix="\"")
 
 # Defining images for organizational purposes
 # Sparky

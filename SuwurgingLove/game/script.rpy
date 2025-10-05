@@ -369,10 +369,23 @@ label after_track_choice:
     scene bg Kahoot
     with Dissolve(1.0)
 
-
-
-
+    python:
+        for i in range(5):
+            request_code_challenge(code_prompts[track], f"challenge_{i+1}", language)
+        challenge_ready = wait_for_code_challenge("challenge_5")
     
+    if challenge_ready:
+        for i in range(5):
+            $ result = show_code_challenge(f"challenge_{i+1}")
+            if result == "answer_given":
+                "You submitted your answer!"
+                # Add logic here based on whether player_answer is correct
+                if player_answer:
+                    "Great job! You identified the code correctly."
+                else:
+                    "Nice try! Let's review what you found."
+            elif result == "skip":
+                "You decided to skip this challenge."
     return
 
 

@@ -1508,6 +1508,133 @@ define bubble.expand_area = {
 }
 
 
+screen ide_screen (code_content, language="python", challenge_id=None):
+    modal True
+    
+    # IDE background
+    add "#1e1e1e"
+    
+    # IDE window
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xsize 1200
+        ysize 800
+        background "#252526"
+        padding (20, 20)
+        
+        vbox:
+            spacing 10
+            
+            # IDE title bar
+            frame:
+                xfill True
+                ysize 40
+                background "#2d2d30"
+                padding (10, 5)
+                
+                text "DevStory IDE - Code Challenge" color "#cccccc" size 18
+            
+            # Code editor area
+            frame:
+                xfill True
+                yfill True
+                background "#1e1e1e"
+                padding (15, 15)
+                
+                viewport:
+                    scrollbars "vertical"
+                    mousewheel True
+                    
+                    vbox:
+                        spacing 5
+                        
+                        # Line numbers and code
+                        python:
+                            highlighted_code = highlight_code(code_content, language)
+                            lines = highlighted_code.split('\n')
+                        
+                        for i, line in enumerate(lines):
+                            hbox:
+                                spacing 20
+                                
+                                # Line number
+                                text str(i + 1) color "#858585" size 14 min_width 30 text_align 1.0
+                                
+                                # Code line
+                                text line color "#d4d4d4" size 14 font "DejaVuSansMono.ttf"
+            
+            # Challenge question and buttons
+            if challenge_id:
+                frame:
+                    xfill True
+                    ysize 120
+                    background "#2d2d30"
+                    padding (15, 15)
+                    
+                    vbox:
+                        spacing 10
+                        
+                        text "Is this code correct?" color="#cccccc" size 20
+                        
+                        hbox:
+                            spacing 20
+                            xalign 0.5
+                            
+                            textbutton "Code is Correct":
+                                action [
+                                    SetVariable("player_answer", True),
+                                    Return("answer_given")
+                                ]
+                                text_size 18
+                                text_color "#ffffff"
+                                background "#0e639c"
+                                hover_background "#1177bb"
+                                padding (20, 10)
+                            
+                            textbutton "Code has Issues":
+                                action [
+                                    SetVariable("player_answer", False),
+                                    Return("answer_given")
+                                ]
+                                text_size 18
+                                text_color "#ffffff"
+                                background "#a74a44"
+                                hover_background "#c1554d"
+                                padding (20, 10)
+                            
+                            # textbutton "Skip":
+                            #     action Return("skip")
+                            #     text_size 18
+                            #     text_color "#cccccc"
+                            #     background "#404040"
+                            #     hover_background "#505050"
+                            #     padding (20, 10)
+
+# Loading screen for API requests
+screen loading_screen(message="Generating code challenge..."):
+    modal True
+    
+    add "#000000c0"
+    
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xsize 400
+        ysize 200
+        background "#252526"
+        padding (30, 30)
+        
+        vbox:
+            spacing 20
+            xalign 0.5
+            yalign 0.5
+            
+            text message color "#cccccc" size 20 text_align 0.5
+            
+            # Simple loading animation
+            text "Loading..." color "#569cd6" size 16 text_align 0.5
+
 
 ################################################################################
 ## Mobile Variants

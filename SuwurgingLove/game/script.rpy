@@ -11,6 +11,7 @@ define narrator = Character(None, what_color="#FFFFFF", what_slow_cps=90)
 # Defining other variables
 default track = ""
 default language = ""
+default tname = ""
 
 # Defining audio
 define door = "doorrush.wav"
@@ -307,21 +308,26 @@ label start:
     show sparky -talking at left, resized, shiftright, flipped, notalk
     pl "Well then..."
 
-menu:
+
+menu trackchoice:
     "What track should we work towards?"
 
     "CSSS Rube Goldberg Challenge":
-        $ track = "CSSS Rube Goldberg Challenge"
-        $ language = "Python"
+        $ track = "assembly"
+        $ language = "c"
+        $ tname = "CSSS Rube Goldberg Challenge"
     "ColorStack Most Portable Project":
-        $ track = "ColorStack Most Portable Project"
-        $ language = "Swift"
+        $ track = "api_endpoint"
+        $ language = "swift"
+        $ tname = "ColorStack Most Portable Project"
     "Safe Software Best Modern C++":
-        $ track = "Safe Software Best Modern C++"
-        $ language = "C++"
+        $ track = "security_issue"
+        $ language = "cpp"
+        $ tname = "Safe Software Best Modern C++"
 
 
 label after_track_choice:
+    $ getcodes()
     pl "Let's go for the [track] track then. Does that work for everyone?"
     show sparky talking at left, resized, shiftright, flipped, talk
     sp "Works for me."
@@ -375,14 +381,24 @@ label after_track_choice:
     with Dissolve(1.0)
 
     "We arrive at ASB 9703, prepared to have some fun"
-    python:
+
+    python: 
+        playgame()
+    
+    return
+
+
+
+init python:
+    def getcodes():
         for i in range(5):
             request_code_challenge(code_prompts[track], f"challenge_{i+1}", language)
-        challenge_ready = wait_for_code_challenge("challenge_5")
+        
     
-        if challenge_ready:
-            for i in range(5):
-            $ result = show_code_challenge(f"challenge_{i+1}")
+    def playgame():
+        for i in range(5):
+            challenge_ready = wait_for_code_challenge(f"challenge_{i+1}")
+            result = show_code_challenge(f"challenge_{i+1}")
             if result == "answer_given":
                 "You submitted your answer!"
                 # Add logic here based on whether player_answer is correct
@@ -392,7 +408,10 @@ label after_track_choice:
                     "Nice try! Let's review what you found."
             elif result == "skip":
                 "You decided to skip this challenge."
-    return
+
+    
+    
+
 
 
 

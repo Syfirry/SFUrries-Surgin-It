@@ -10,20 +10,19 @@ init python:
         "gemini-flash":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=",
     }
     
-    def load_api_key(**kwargs):
-        path = kwargs.get("path", "./api_key.txt")
+    def load_api_key (**kwargs):
+        path = kwargs.get("path", "api_key.txt")
         key_file = os.path.join(config.gamedir, "api_key.txt")
         print(key_file)
         if os.path.exists(key_file):
             try:
                 with open(key_file, 'r') as f:
-                    print("ping")
                     return f.read()
             except Exception as e:
                 print("Error: could not extract key file at: " + key_file + "Exception: " + e)        
         return os.environ.get("GEMINI_API_KEY")
 
-    def call_gemini(prompt, **kwargs):
+    def call_gemini (prompt, **kwargs):
 
         model = kwargs.get('model', 'gemini-flash')
         temperature = kwargs.get('temperature', 0.7)
